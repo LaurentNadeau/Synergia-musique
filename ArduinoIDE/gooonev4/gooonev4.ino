@@ -296,15 +296,7 @@ void pattern9() {
   runMotors();
 
   stepper1.moveTo(1500);
-  stepper2.moveTo(1000);
-  stepper3.moveTo(500);
-  runMotors();
-
-  stepper1.moveTo(2000);
-  stepper2.moveTo(1500);
-  stepper3.moveTo(1000);
-  stepper4.moveTo(500);
-  runMotors();
+  stepper2.moveTo(1000);0
 
   stepper1.moveTo(2500);
   stepper2.moveTo(2000);
