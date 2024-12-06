@@ -286,7 +286,7 @@ void pattern8() {
   runMotors();
 }
 
-// Pattern 2 : Mouvement en alternance
+// Pattern 9 : Mouvement en alternance
 void pattern9() {
   stepper1.moveTo(500);
   runMotor(stepper1);
@@ -296,7 +296,7 @@ void pattern9() {
   runMotors();
 
   stepper1.moveTo(1500);
-  stepper2.moveTo(1000);0
+  stepper2.moveTo(1000);
 
   stepper1.moveTo(2500);
   stepper2.moveTo(2000);
