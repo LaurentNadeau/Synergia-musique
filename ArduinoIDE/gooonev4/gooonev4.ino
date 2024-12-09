@@ -92,15 +92,6 @@ void handleMotors() {
     case 7:
       pattern6();
       break;
-    case 8:
-      pattern7();
-      break;
-    case 9:
-      pattern8();
-      break;   
-    case 10:
-      pattern9();
-      break; 
   }
 }
 
@@ -125,70 +116,59 @@ void pattern1() {
   delay(750);
 }
 
-// Pattern 2 : Mouvement en alternance
+// Pattern 2 : Mouvements opposés
 void pattern2() {
   stepper1.moveTo(1500);
-  runMotor(stepper1);
-
-  stepper2.moveTo(1500);
-  runMotor(stepper2);
-
+  stepper2.moveTo(-1500);
   stepper3.moveTo(1500);
-  runMotor(stepper3);
-
-  stepper4.moveTo(1500);
-  runMotor(stepper4);
-
+  stepper4.moveTo(-1500);
   stepper5.moveTo(1500);
-  runMotor(stepper5);
+  runMotors();
+
   delay(1000);
 
-  stepper1.moveTo(0);
-  stepper2.moveTo(0);
-  stepper3.moveTo(0);
-  stepper4.moveTo(0);
-  stepper5.moveTo(0);
+  stepper1.moveTo(-1500);
+  stepper2.moveTo(1500);
+  stepper3.moveTo(-1500);
+  stepper4.moveTo(1500);
+  stepper5.moveTo(-1500);
   runMotors();
+
+  delay(1000);
 }
 
-// Pattern 3 : Mouvements opposés
+// Pattern 3 : Mouvement en alternance pairs et impaires
 void pattern3() {
-  stepper1.moveTo(1500);
-  stepper2.moveTo(-1500);
-  stepper3.moveTo(1500);
-  stepper4.moveTo(-1500);
-  stepper5.moveTo(1500);
+  stepper2.moveTo(1500);
+  stepper4.moveTo(1500);
   runMotors();
-
-  delay(1000);
+  delay(500);
 
   stepper1.moveTo(-1500);
-  stepper2.moveTo(1500);
   stepper3.moveTo(-1500);
-  stepper4.moveTo(1500);
   stepper5.moveTo(-1500);
   runMotors();
-
   delay(1000);
+
+  stepper1.moveTo(0);
+  stepper2.moveTo(0);
+  stepper3.moveTo(0);
+  stepper4.moveTo(0);
+  stepper5.moveTo(0);
+  runMotors();
 }
 
-// Pattern 4 : Spirale progressive
+// Pattern 4 : Mouvement du centre désynchronisé
 void pattern4() {
-  const int initialStep = 500;
-  const int increment = 500;
-  const int maxSteps = 3;
+  stepper1.moveTo(1500);
+  stepper2.moveTo(1500);
+  stepper4.moveTo(-1500);
+  stepper5.moveTo(-1500);
+  runMotors();
 
-  for (int i = 1; i <= maxSteps; i++) {
-    int stepDistance = initialStep + (i * increment);
-    stepper1.move(stepDistance);
-    stepper2.move(stepDistance);
-    stepper3.move(stepDistance);
-    stepper4.move(stepDistance);
-    stepper5.move(stepDistance);
-    runMotors();
-
-    delay(300);
-  }
+  stepper3.moveTo(1500);
+  runMotor(stepper3);
+  delay(750);
 
   stepper1.moveTo(0);
   stepper2.moveTo(0);
@@ -198,18 +178,21 @@ void pattern4() {
   runMotors();
 }
 
-// Pattern 5 : Mouvement en alternance pairs et impaires
+// Pattern 5 : Mouvement des extrémités allant vers le centre
 void pattern5() {
-  stepper2.moveTo(1500);
-  stepper4.moveTo(1500);
+  stepper1.moveTo(1500);
+  stepper5.moveTo(-1500);
   runMotors();
   delay(500);
 
-  stepper1.moveTo(-1500);
-  stepper3.moveTo(-1500);
-  stepper5.moveTo(-1500);
+  stepper2.moveTo(1500);
+  stepper4.moveTo(-1500);
   runMotors();
-  delay(1000);
+  delay(500);
+
+  stepper3.moveTo(1500);
+  runMotor(stepper3);
+  delay(750);
 
   stepper1.moveTo(0);
   stepper2.moveTo(0);
@@ -219,75 +202,8 @@ void pattern5() {
   runMotors();
 }
 
-// Pattern 6 : Mouvement du centre désynchronisé
+// Pattern 6 : Mouvement en alternance
 void pattern6() {
-  stepper1.moveTo(1500);
-  stepper2.moveTo(1500);
-  stepper4.moveTo(-1500);
-  stepper5.moveTo(-1500);
-  runMotors();
-
-  stepper3.moveTo(1500);
-  runMotor(stepper3);
-  delay(750);
-
-  stepper1.moveTo(0);
-  stepper2.moveTo(0);
-  stepper3.moveTo(0);
-  stepper4.moveTo(0);
-  stepper5.moveTo(0);
-  runMotors();
-}
-
-// Pattern 7 : Mouvement des extrémités allant vers le centre
-void pattern7() {
-  stepper1.moveTo(1500);
-  stepper5.moveTo(-1500);
-  runMotors();
-  delay(500);
-
-  stepper2.moveTo(1500);
-  stepper4.moveTo(-1500);
-  runMotors();
-  delay(500);
-
-  stepper3.moveTo(1500);
-  runMotor(stepper3);
-  delay(750);
-
-  stepper1.moveTo(0);
-  stepper2.moveTo(0);
-  stepper3.moveTo(0);
-  stepper4.moveTo(0);
-  stepper5.moveTo(0);
-  runMotors();
-}
-
-void pattern8() {
-  stepper3.moveTo(1000);
-  runMotor(stepper3);
-  delay(500);
-
-  stepper2.moveTo(-1500);
-  stepper4.moveTo(1500);
-  runMotors();
-  delay(500);
-
-  stepper1.moveTo(-2000);
-  stepper5.moveTo(2000);
-  runMotors();
-  delay(750);
-
-  stepper1.moveTo(0);
-  stepper2.moveTo(0);
-  stepper3.moveTo(0);
-  stepper4.moveTo(0);
-  stepper5.moveTo(0);
-  runMotors();
-}
-
-// Pattern 9 : Mouvement en alternance
-void pattern9() {
   stepper1.moveTo(500);
   runMotor(stepper1);
 
@@ -297,6 +213,15 @@ void pattern9() {
 
   stepper1.moveTo(1500);
   stepper2.moveTo(1000);
+  stepper3.moveTo(500);
+  runMotors();
+
+  stepper1.moveTo(2000);
+  stepper2.moveTo(1500);
+  stepper3.moveTo(1000);
+  stepper4.moveTo(500);
+  runMotors();
+
 
   stepper1.moveTo(2500);
   stepper2.moveTo(2000);
